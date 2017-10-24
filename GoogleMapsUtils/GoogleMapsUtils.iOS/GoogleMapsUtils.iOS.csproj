@@ -40,7 +40,26 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clustering\Algo\GMUGridBasedClusterAlgorithm.cs" />
+    <Compile Include="Clustering\Algo\GMUNonHierarchicalDistanceBasedAlgorithm.cs" />
+    <Compile Include="Clustering\Algo\GMUSimpleClusterAlgorithm.cs" />
+    <Compile Include="Clustering\Algo\IGMUClusterAlgorithm.cs" />
+    <Compile Include="Clustering\GMUClusterManager.cs" />
+    <Compile Include="Clustering\GMUStaticCluster.cs" />
+    <Compile Include="Clustering\IGMUCluster.cs" />
+    <Compile Include="Clustering\IGMUClusterItem.cs" />
+    <Compile Include="Clustering\POIItem.cs" />
+    <Compile Include="Clustering\View\GMUDefaultClusterIconGenerator.cs" />
+    <Compile Include="Clustering\View\GMUDefaultClusterRenderer.cs" />
+    <Compile Include="Clustering\View\IGMUClusterIconGenerator.cs" />
+    <Compile Include="Clustering\View\IGMUClusterRenderer.cs" />
+    <Compile Include="Clustering\View\UserDataHolder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuadTree\GQTBounds.cs" />
+    <Compile Include="QuadTree\GQTPoint.cs" />
+    <Compile Include="QuadTree\GQTPointQuadTree.cs" />
+    <Compile Include="QuadTree\GQTPointQuadTreeChild.cs" />
+    <Compile Include="QuadTree\GQTPointQuadTreeItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Google.iOS.Maps">

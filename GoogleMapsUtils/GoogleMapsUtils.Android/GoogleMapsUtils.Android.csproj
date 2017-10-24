@@ -44,12 +44,82 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Clustering\Algo\GridBasedAlgorithm.cs" />
+    <Compile Include="Clustering\Algo\IAlgorithm.cs" />
+    <Compile Include="Clustering\Algo\NonHierarchicalDistanceBasedAlgorithm.cs" />
+    <Compile Include="Clustering\Algo\PreCachingAlgorithmDecorator.cs" />
+    <Compile Include="Clustering\Algo\QuadItem.cs" />
+    <Compile Include="Clustering\Algo\StaticCluster.cs" />
+    <Compile Include="Clustering\ClusterManager.cs" />
+    <Compile Include="Clustering\ICluster.cs" />
+    <Compile Include="Clustering\IClusterItem.cs" />
+    <Compile Include="Clustering\View\DefaultClusterRenderer.cs" />
+    <Compile Include="Clustering\View\IClusterRenderer.cs" />
+    <Compile Include="Clustering\View\MarkerCache.cs" />
+    <Compile Include="Clustering\View\MarkerWithPosition.cs" />
+    <Compile Include="Geometry\Bounds.cs" />
+    <Compile Include="Geometry\Point.cs" />
+    <Compile Include="MarkerManager.cs" />
+    <Compile Include="Projection\SphericalMercatorProjection.cs" />
+    <Compile Include="QuadTree\IQuadTreeItem.cs" />
+    <Compile Include="QuadTree\PointQuadTree.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\BubbleDrawable.cs" />
+    <Compile Include="UI\IconGenerator.cs" />
+    <Compile Include="UI\RotationLayout.cs" />
+    <Compile Include="UI\SquareTextView.cs" />
+    <Compile Include="Util\LongSparseArray.cs" />
+    <Compile Include="Util\LruCache.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
+    <AndroidResource Include="Resources\layout\amu_info_window.axml" />
+    <AndroidResource Include="Resources\layout\amu_text_bubble.axml" />
+    <AndroidResource Include="Resources\layout\amu_webview.axml" />
+    <AndroidResource Include="Resources\raw\amu_ballon_gx_prefix.kml" />
+    <AndroidResource Include="Resources\raw\amu_basic_folder.kml" />
+    <AndroidResource Include="Resources\raw\amu_basic_placemark.kml" />
+    <AndroidResource Include="Resources\raw\amu_cdata.kml" />
+    <AndroidResource Include="Resources\raw\amu_default_balloon.kml" />
+    <AndroidResource Include="Resources\raw\amu_document_nest.kml" />
+    <AndroidResource Include="Resources\raw\amu_draw_order_ground_overlay.kml" />
+    <AndroidResource Include="Resources\raw\amu_extended_data.kml" />
+    <AndroidResource Include="Resources\raw\amu_ground_overlay.kml" />
+    <AndroidResource Include="Resources\raw\amu_ground_overlay_color.kml" />
+    <AndroidResource Include="Resources\raw\amu_inline_style.kml" />
+    <AndroidResource Include="Resources\raw\amu_multigeometry_placemarks.kml" />
+    <AndroidResource Include="Resources\raw\amu_multiple_placemarks.kml" />
+    <AndroidResource Include="Resources\raw\amu_nested_folders.kml" />
+    <AndroidResource Include="Resources\raw\amu_nested_multigeometry.kml" />
+    <AndroidResource Include="Resources\raw\amu_poly_style_boolean_alpha.kml" />
+    <AndroidResource Include="Resources\raw\amu_poly_style_boolean_numeric.kml" />
+    <AndroidResource Include="Resources\raw\amu_unknwown_folder.kml" />
+    <AndroidResource Include="Resources\raw\amu_unsupported.kml" />
+    <AndroidResource Include="Resources\raw\amu_visibility_ground_overlay.kml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Xamarin.GooglePlayServices.Maps">
+      <Version>42.1021.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\amu_bubble_mask.9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\amu_bubble_shadow.9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxhdpi\amu_bubble_mask.9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxhdpi\amu_bubble_shadow.9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\ids.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\styles.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

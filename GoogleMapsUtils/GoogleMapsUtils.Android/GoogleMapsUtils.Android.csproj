@@ -99,6 +99,10 @@
     <AndroidResource Include="Resources\raw\amu_visibility_ground_overlay.kml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="NuGet.CommandLine">
+      <Version>4.3.0</Version>
+	  <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Xamarin.GooglePlayServices.Maps">
       <Version>42.1021.1</Version>
     </PackageReference>

@@ -99,14 +99,32 @@
     <AndroidResource Include="Resources\raw\amu_visibility_ground_overlay.kml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="NuGet.Build.Tasks.Pack">
+      <Version>4.4.0</Version>
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="NuGet.CommandLine">
       <Version>4.3.0</Version>
-	  <PrivateAssets>All</PrivateAssets>
+      <PrivateAssets>All</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Xamarin.GooglePlayServices.Maps">
       <Version>42.1021.1</Version>
     </PackageReference>
   </ItemGroup>
+  
+  <PropertyGroup>
+    <Version>0.1.4</Version>
+    <Authors>Orbital8</Authors>
+    <Description>GoogleMapsUtils for Xamarin library.</Description>
+    <Copyright>Copyright (c) 2017 Orbital8</Copyright>
+  </PropertyGroup>
+ 
+    <PropertyGroup>
+    <PackageId>O8.GoogleMapsUtils.Android</PackageId>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageTags>Xamarin maps</PackageTags>
+  </PropertyGroup>
+  
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\amu_bubble_mask.9.png" />
   </ItemGroup>

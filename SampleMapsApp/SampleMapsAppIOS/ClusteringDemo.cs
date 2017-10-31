@@ -20,8 +20,6 @@ namespace SampleMapsAppIOS
 
         public override void SetUpDemo(DetailViewController viewController)
         {
-            UIApplication.SharedApplication.InvokeOnMainThread(() =>
-            {
             _mapView = viewController.Map;
             // Set up the cluster manager with default icon generator and renderer.
             var iconGenerator = new GMUDefaultClusterIconGenerator();
@@ -35,8 +33,7 @@ namespace SampleMapsAppIOS
                 // Call cluster() after items have been added to perform the clustering and rendering on map.
                 _clusterManager.Cluster();
             // Register self to listen to both GMUClusterManagerDelegate and GMSMapViewDelegate events.
-            _clusterManager.DidTapCluster += OnDidTapCluster; // TODO unregister to prevent leak
-            });
+            _clusterManager.DidTapCluster += OnDidTapCluster; 
 
         }
 
@@ -71,7 +68,6 @@ namespace SampleMapsAppIOS
 
         protected override void Dispose(bool disposing)
         {
-            Console.WriteLine($"Disposing {Title}");
             if (_disposed)
                 return;
             if (disposing)

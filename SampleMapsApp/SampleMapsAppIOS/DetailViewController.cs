@@ -41,6 +41,27 @@ namespace SampleMapsAppIOS
             ConfigureView();
         }
 
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+            if (DetailItem is Demo demo)
+            {
+                demo.SetUpDemo(this);
+            }
+        }
+
+        public override void ViewWillDisappear(bool animated)
+        {
+            if (DetailItem is IDisposable disposable)
+            {
+                disposable.Dispose();
+                DetailItem = null;
+            }
+
+            base.ViewWillDisappear(animated);
+        }
+
+
         void ConfigureView()
         {
             // Update the user interface for the detail item
@@ -53,13 +74,10 @@ namespace SampleMapsAppIOS
                     var camera = CameraPosition.FromCamera(latitude: Demo.CameraLatitude,
                         longitude: Demo.CameraLongitude,
                         zoom: 14);
-                    InvokeOnMainThread(() =>
-                    {
                         _mapView = MapView.FromCamera(CGRect.Empty, camera);
                         _mapView.MyLocationEnabled = true;
                     View = _mapView;
-                    demo.SetUpDemo(this);
-                    });
+//                    demo.SetUpDemo(this);
                 }
             }
         }

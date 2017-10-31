@@ -16,7 +16,7 @@ namespace SampleMapsAppIOS
         private GMUClusterManager _clusterManager;
         private MapView _mapView;
 
-        private Random _rand = new Random();
+        private readonly Random _rand = new Random();
 
         public override void SetUpDemo(DetailViewController viewController)
         {

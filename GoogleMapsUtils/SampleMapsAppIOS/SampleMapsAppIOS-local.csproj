@@ -118,11 +118,6 @@
     </ImageAsset>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="O8.GoogleMapsUtils.iOS">
-      <Version>0.1.1</Version>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -130,6 +125,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Entitlements.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GoogleMapsUtils.iOS\GoogleMapsUtils.iOS.csproj">
+      <Project>{b58a0eaa-7770-471a-8cb3-742e7cc445a3}</Project>
+      <Name>GoogleMapsUtils.iOS</Name>
+      <IsAppExtension>false</IsAppExtension>
+      <IsWatchApp>false</IsWatchApp>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

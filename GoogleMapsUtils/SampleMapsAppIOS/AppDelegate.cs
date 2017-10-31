@@ -11,7 +11,7 @@ namespace SampleMapsAppIOS
 	public class AppDelegate : UIApplicationDelegate
 	{
         // class-level declarations
-	    private const string MapsApiKey = "<Get your ID at https://code.google.com/apis/console/>";
+	    private const string MapsApiKey = "[YOUR-KEY]";
 
         public override UIWindow Window {
 			get;

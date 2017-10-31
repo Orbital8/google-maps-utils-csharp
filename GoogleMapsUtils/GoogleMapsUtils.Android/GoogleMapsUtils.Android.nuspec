@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>O8.GoogleMapsUtils.Android</id>
-    <version>0.1.12</version>
+    <version>0.1.13</version>
     <title>GoogleMapsUtils port for Android</title>
     <authors>Orbital8</authors>
     <owners>Orbital8</owners>
@@ -14,20 +14,20 @@
     <copyright>Copyright (c) 2017 Orbital8</copyright>
     <tags>xamarin maps android</tags>
     <dependencies>
-      <group targetFramework="MonoAndroid7.0">
-        <dependency id="Xamarin.Android.Support.v4" version="25.1.0"/>
+      <group targetFramework="MonoAndroid7.1">
+        <dependency id="Xamarin.Android.Support.v4" version="25.4.0.2"/>
         <dependency id="Xamarin.GooglePlayServices.Maps" version="[42.1021.1]"/>
       </group>
     </dependencies>
     <frameworkAssemblies>
-      <frameworkAssembly assemblyName="Java.Interop" targetFramework="MonoAndroid7.0" />
-      <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework="MonoAndroid7.0" />
-      <frameworkAssembly assemblyName="Mono.Android" targetFramework="MonoAndroid7.0" />
-      <frameworkAssembly assemblyName="mscorlib" targetFramework="MonoAndroid7.0" />
-      <frameworkAssembly assemblyName="System.Core" targetFramework="MonoAndroid7.0" />
-      <frameworkAssembly assemblyName="System" targetFramework="MonoAndroid7.0" />
-      <frameworkAssembly assemblyName="System.Xml" targetFramework="MonoAndroid7.0" />
-      <frameworkAssembly assemblyName="System.Xml.Linq" targetFramework="MonoAndroid7.0" />
+      <frameworkAssembly assemblyName="Java.Interop" targetFramework="MonoAndroid7.1" />
+      <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework="MonoAndroid7.1" />
+      <frameworkAssembly assemblyName="Mono.Android" targetFramework="MonoAndroid7.1" />
+      <frameworkAssembly assemblyName="mscorlib" targetFramework="MonoAndroid7.1" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework="MonoAndroid7.1" />
+      <frameworkAssembly assemblyName="System" targetFramework="MonoAndroid7.1" />
+      <frameworkAssembly assemblyName="System.Xml" targetFramework="MonoAndroid7.1" />
+      <frameworkAssembly assemblyName="System.Xml.Linq" targetFramework="MonoAndroid7.1" />
     </frameworkAssemblies>
   </metadata>
 </package>

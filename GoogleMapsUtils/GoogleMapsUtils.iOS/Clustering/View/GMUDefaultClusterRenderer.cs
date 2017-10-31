@@ -125,12 +125,15 @@ namespace GoogleMapsUtils.iOS.Clustering.View
 
         private void Dispose(bool disposing)
         {
-            Clear();
 
-            if (_clusterIconGenerator != null)
+            if (disposing)
             {
-                _clusterIconGenerator.Dispose();
-                _clusterIconGenerator = null;
+                Clear();
+                if (_clusterIconGenerator != null)
+                {
+                    _clusterIconGenerator.Dispose();
+                    _clusterIconGenerator = null;
+                }
             }
         }
 

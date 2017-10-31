@@ -4,9 +4,6 @@ using Google.Maps;
 
 namespace SampleMapsAppIOS
 {
-    //TODO Attribution Requirements
-    //If you use the Google Maps SDK for iOS in your application, you must include the attribution text as part of a legal notices section in your application.Including legal notices as an independent menu item, or as part of an "About" menu item, is recommended.
-    //You can get the attribution text by making a call to Google.Maps.MapServices.OpenSourceLicenseInfo
 
         // The UIApplicationDelegate for the application. This class is responsible for launching the
         // User Interface of the application, as well as listening (and optionally responding) to application events from iOS.

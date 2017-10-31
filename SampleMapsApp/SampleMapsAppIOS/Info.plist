@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>SampleMapsAppIOS</string>
+	<string>O8 Sample Maps Utils</string>
 	<key>CFBundleIdentifier</key>
 	<string>o8.googlemapsutils.ios.sample</string>
 	<key>CFBundleShortVersionString</key>
@@ -32,10 +32,12 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-  <key>LSApplicationQueriesSchemes</key>
-  <array>
-    <string>googlechromes</string>
-    <string>comgooglemaps</string>
-  </array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>googlechromes</string>
+		<string>comgooglemaps</string>
+	</array>
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>This app needs access to the current location.</string>
 </dict>
 </plist>

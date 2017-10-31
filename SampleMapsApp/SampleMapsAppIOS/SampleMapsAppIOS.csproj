@@ -84,10 +84,19 @@
     <CodesignKey>iPhone Distribution</CodesignKey>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AboutView.cs" />
+    <Compile Include="AboutView.designer.cs">
+      <DependentUpon>AboutView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AboutViewController.cs" />
+    <Compile Include="AboutViewController.designer.cs">
+      <DependentUpon>AboutViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClusteringDemo.cs" />
+    <Compile Include="Demo.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Samples.cs" />
-    <None Include="GettingStarted.Xamarin" />
     <None Include="Info.plist">
       <SubType>Designer</SubType>
     </None>

@@ -1,136 +1,128 @@
 ﻿using System;
 using System.Collections.Generic;
-
-using UIKit;
 using Foundation;
+using UIKit;
 
 namespace SampleMapsAppIOS
 {
-	public partial class MasterViewController : UITableViewController
-	{
-		DataSource dataSource;
-	    private Demo[] _samples;
+    public partial class MasterViewController : UITableViewController
+    {
+        private Demo[] _samples;
+        private DataSource _dataSource;
+        private UIButton _infoButton;
 
-	    protected MasterViewController(IntPtr handle) : base(handle)
-		{
-			// Note: this .ctor should not contain any initialization logic.
-		}
+        protected MasterViewController(IntPtr handle) : base(handle)
+        {
+            // Note: this .ctor should not contain any initialization logic.
+        }
 
-		public override void ViewDidLoad()
-		{
-			base.ViewDidLoad();
+        public override void DidReceiveMemoryWarning()
+        {
+            base.DidReceiveMemoryWarning();
+            // Release any cached data, images, etc that aren't in use.
+        }
 
-			Title = NSBundle.MainBundle.LocalizedString("Demos", "Demos");
+        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        {
+            if (segue.Identifier == "showDetail")
+            {
+                var controller =
+                    (DetailViewController) ((UINavigationController) segue.DestinationViewController).TopViewController;
+                var indexPath = TableView.IndexPathForSelectedRow;
+                var item = _dataSource.Objects[indexPath.Row];
 
-			// Perform any additional setup after loading the view, typically from a nib.
-			NavigationItem.LeftBarButtonItem = EditButtonItem;
+                controller.SetDetailItem(item);
+                controller.NavigationItem.LeftBarButtonItem = SplitViewController.DisplayModeButtonItem;
+                controller.NavigationItem.LeftItemsSupplementBackButton = true;
+            }
+        }
 
-//			var addButton = new UIBarButtonItem(UIBarButtonSystemItem.Add, AddNewItem);
-//			addButton.AccessibilityLabel = "addButton";
-//			NavigationItem.RightBarButtonItem = addButton;
-		    _samples = Samples.LoadSamples();
-			TableView.Source = dataSource = new DataSource(this, _samples);
-		}
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
 
-		public override void ViewWillAppear(bool animated)
-		{
-			ClearsSelectionOnViewWillAppear = SplitViewController.Collapsed;
-			base.ViewWillAppear(animated);
-		}
+            Title = NSBundle.MainBundle.LocalizedString("Demos", "Demos");
 
-		public override void DidReceiveMemoryWarning()
-		{
-			base.DidReceiveMemoryWarning();
-			// Release any cached data, images, etc that aren't in use.
-		}
+            // Perform any additional setup after loading the view, typically from a nib.
 
-		void AddNewItem(object sender, EventArgs args)
-		{
-			dataSource.Objects.Insert(0, DateTime.Now);
+            _samples = Samples.LoadSamples();
+            _infoButton = new UIButton(UIButtonType.InfoDark);
+            _infoButton.AccessibilityLabel = "infoButton";
+            NavigationItem.RightBarButtonItem = new UIBarButtonItem(_infoButton);
+            TableView.Source = _dataSource = new DataSource(this, _samples);
+        }
 
-			using (var indexPath = NSIndexPath.FromRowSection(0, 0))
-				TableView.InsertRows(new[] { indexPath }, UITableViewRowAnimation.Automatic);
-		}
+        public override void ViewWillAppear(bool animated)
+        {
+            ClearsSelectionOnViewWillAppear = SplitViewController.Collapsed;
+            base.ViewWillAppear(animated);
+            _infoButton.TouchUpInside += DisplayAboutPage;
 
-		public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
-		{
-			if (segue.Identifier == "showDetail")
-			{
-				var controller = (DetailViewController)((UINavigationController)segue.DestinationViewController).TopViewController;
-				var indexPath = TableView.IndexPathForSelectedRow;
-				var item = dataSource.Objects[indexPath.Row];
+        }
 
-				controller.SetDetailItem(item);
-				controller.NavigationItem.LeftBarButtonItem = SplitViewController.DisplayModeButtonItem;
-				controller.NavigationItem.LeftItemsSupplementBackButton = true;
-			}
-		}
+        public override void ViewWillDisappear(bool animated)
+        {
+            _infoButton.TouchUpInside -= DisplayAboutPage;
+            base.ViewWillDisappear(animated);
+        }
 
-		class DataSource : UITableViewSource
-		{
-			static readonly NSString CellIdentifier = new NSString("Cell");
-			readonly List<object> objects = new List<object>();
-			readonly MasterViewController controller;
+        void DisplayAboutPage(object sender, EventArgs args)
+        {
+            if (Storyboard.InstantiateViewController
+                ("AboutViewController") is AboutViewController about)
+            {
+                NavigationController.PushViewController(about, true);
+            }
+        }
 
-			public DataSource(MasterViewController controller, Demo[] samples)
-			{
-				this.controller = controller;
-			    foreach (var sample in samples)
-			    {
-			        objects.Add(sample);
-			    }
-			}
+        class DataSource : UITableViewSource
+        {
+            static readonly NSString CellIdentifier = new NSString("Cell");
+            private readonly MasterViewController _controller;
+            private readonly List<object> _objects = new List<object>();
 
-			public IList<object> Objects
-			{
-				get { return objects; }
-			}
+            public DataSource(MasterViewController controller, IEnumerable<Demo> samples)
+            {
+                _controller = controller;
+                foreach (var sample in samples)
+                {
+                    _objects.Add(sample);
+                }
+            }
 
-			// Customize the number of sections in the table view.
-			public override nint NumberOfSections(UITableView tableView)
-			{
-				return 1;
-			}
+            public IList<object> Objects => _objects;
 
-			public override nint RowsInSection(UITableView tableview, nint section)
-			{
-				return objects.Count;
-			}
+            public override bool CanEditRow(UITableView tableView, NSIndexPath indexPath)
+            {
+                // Return false if you do not want the specified item to be editable.
+                return false;
+            }
 
-			// Customize the appearance of table view cells.
-			public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
-			{
-				var cell = tableView.DequeueReusableCell(CellIdentifier, indexPath);
+            // Customize the appearance of table view cells.
+            public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
+            {
+                var cell = tableView.DequeueReusableCell(CellIdentifier, indexPath);
 
-			    if (objects[indexPath.Row] is Demo demo)
-			    {
-			        cell.TextLabel.Text = demo.Title;
-			        cell.DetailTextLabel.Text = demo.Description;
-			    }
+                if (_objects[indexPath.Row] is Demo demo)
+                {
+                    cell.TextLabel.Text = demo.Title;
+                    cell.DetailTextLabel.Text = demo.Description;
+                }
 
 
-			    return cell;
-			}
+                return cell;
+            }
 
-			public override bool CanEditRow(UITableView tableView, NSIndexPath indexPath)
-			{
-				// Return false if you do not want the specified item to be editable.
-				return false;
-			}
+            // Customize the number of sections in the table view.
+            public override nint NumberOfSections(UITableView tableView)
+            {
+                return 1;
+            }
 
-			public override void CommitEditingStyle(UITableView tableView, UITableViewCellEditingStyle editingStyle, NSIndexPath indexPath)
-			{
-				if (editingStyle == UITableViewCellEditingStyle.Delete)
-				{
-					// Delete the row from the data source.
-					objects.RemoveAt(indexPath.Row);
-					controller.TableView.DeleteRows(new[] { indexPath }, UITableViewRowAnimation.Fade);
-				}
-				else if (editingStyle == UITableViewCellEditingStyle.Insert)
-				{
-					// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-				}
-			}
-		}
-	}
+            public override nint RowsInSection(UITableView tableview, nint section)
+            {
+                return _objects.Count;
+            }
+        }
+    }
 }

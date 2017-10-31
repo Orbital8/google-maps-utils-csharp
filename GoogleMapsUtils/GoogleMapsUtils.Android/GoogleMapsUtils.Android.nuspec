@@ -2,10 +2,9 @@
 <package >
   <metadata>
     <id>O8.GoogleMapsUtils.Android</id>
-    <version>0.1.13</version>
+    <version>0.1.0-alpha</version>
     <title>GoogleMapsUtils port for Android</title>
     <authors>Orbital8</authors>
-    <owners>Orbital8</owners>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
     <projectUrl>https://github.com/Orbital8/google-maps-utils-csharp</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>

@@ -129,20 +129,23 @@ namespace GoogleMapsUtils.iOS.Clustering.View
 
         private void Dispose(bool disposing)
         {
-            if (_iconCache != null)
+            if (disposing)
             {
-                _iconCache.Dispose();
-                _iconCache = null;
-            }
-
-            if (_backgroundImages != null)
-            {
-                foreach(var image in _backgroundImages)
+                if (_iconCache != null)
                 {
-                    image.Dispose();
+                    _iconCache.Dispose();
+                    _iconCache = null;
                 }
 
-                _backgroundImages = null;
+                if (_backgroundImages != null)
+                {
+                    foreach (var image in _backgroundImages)
+                    {
+                        image.Dispose();
+                    }
+
+                    _backgroundImages = null;
+                }
             }
         }
 

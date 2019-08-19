@@ -29,7 +29,7 @@ using GoogleMapsUtils.Android.Clustering.View;
 namespace GoogleMapsUtils.Android.Clustering
 {
     public class ClusterManager 
-        : Java.Lang.Object, GoogleMap.IOnCameraChangeListener, 
+        : Java.Lang.Object, GoogleMap.IOnCameraIdleListener, 
     GoogleMap.IOnMarkerClickListener, GoogleMap.IOnInfoWindowClickListener,
     GoogleMap.IInfoWindowAdapter
     {
@@ -258,20 +258,22 @@ namespace GoogleMapsUtils.Android.Clustering
             });
         }
 
-        public void OnCameraChange(CameraPosition cameraPosition)
+
+        public void OnCameraIdle()
         {
-            if(_renderer is GoogleMap.IOnCameraChangeListener)
+            if(_renderer is GoogleMap.IOnCameraIdleListener)
             {
-                ((GoogleMap.IOnCameraChangeListener)_renderer).OnCameraChange(cameraPosition);
+                ((GoogleMap.IOnCameraIdleListener)_renderer).OnCameraIdle();
             }
 
             // don't re-compute clusters if the map has just been panned/tilted/rotated
-            if(_previousCameraPosition != null && _previousCameraPosition.Zoom == cameraPosition.Zoom)
+            var position = _map.CameraPosition;
+            if (_previousCameraPosition != null && _previousCameraPosition.Zoom == position.Zoom)
             {
                 return;
             }
-
-            _previousCameraPosition = cameraPosition;
+            
+            _previousCameraPosition = _map.CameraPosition;
             Cluster();
         }
 
@@ -314,5 +316,6 @@ namespace GoogleMapsUtils.Android.Clustering
 		{
 			void OnClusterItemInfoWindowClick(IClusterItem clusterItem);
 		}
+
     }
 }

@@ -105,16 +105,15 @@ namespace GoogleMapsUtils.iOS.Clustering
                 _previousCamera = null;
             }
 
-            if (_mapView != null)
-            {
-                _mapView.CameraPositionChanged -= OnCameraPositionChanged;
-                _mapView.TappedMarker -= OnTappedMarker;
-                _mapView.Dispose();
-                _mapView = null;
-            }
-
             if(disposing)
             {
+                if (_mapView != null)
+                {
+                    _mapView.CameraPositionChanged -= OnCameraPositionChanged;
+                    _mapView.TappedMarker -= OnTappedMarker;
+                    _mapView.Dispose();
+                    _mapView = null;
+                }
                 
             }
         }
